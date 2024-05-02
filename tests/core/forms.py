@@ -1,3 +1,4 @@
+from dal import autocomplete
 from django import forms
 
 from import_export.forms import ConfirmImportForm, ExportForm, ImportForm
@@ -6,7 +7,11 @@ from .models import Author
 
 
 class AuthorFormMixin(forms.Form):
-    author = forms.ModelChoiceField(queryset=Author.objects.all(), required=True)
+    author = forms.ModelChoiceField(
+        queryset=Author.objects.all(),
+        required=True,
+        widget=autocomplete.ModelSelect2(url="author-autocomplete"),
+    )
 
 
 class CustomImportForm(AuthorFormMixin, ImportForm):

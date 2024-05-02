@@ -12,6 +12,12 @@ urlpatterns = [
     path(
         "export/category/", views.CategoryExportView.as_view(), name="export-category"
     ),
+    # autocomplete
+    path(
+        "author-autocomplete/",
+        views.AuthorAutocomplete.as_view(),
+        name="author-autocomplete",
+    ),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
